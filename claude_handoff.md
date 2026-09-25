@@ -12,3 +12,7 @@
 - 用户需要 TensorFlow 和显卡环境。查过云端机器：没有显卡；4 核处理器，15GB 内存，约 30GB 可用硬盘，Python 3.11；能联网下载 TensorFlow（已测试能下载纯处理器版 tensorflow-cpu）。
 - 建议做法：云端写代码、装纯处理器版 TensorFlow、用小数据测试；真正需要显卡的大训练放到用户自己的显卡电脑或别的显卡云平台上跑。想每次开会话都自动装好，可把安装命令写进环境设置里的“启动脚本”。
 - 用户问云端跑完的东西怎么拿到自己电脑。回答：云端结果保存到 GitHub 仓库的 claude/eager-dirac-bg2shn 分支；云端没法直接写进用户电脑，用户要在自己电脑上用 git clone / git pull 下载到指定文件夹；小文件也可以直接发给用户下载；GitHub 单个文件上限 100MB，大模型文件要另想办法。
+- 用户的项目是“SOC 项目”（电池荷电状态估计），要用 PyBaMM 和 TensorFlow；训练需要的数据、仿真、代码约几个 GB，原本放在用户的 OneDrive 里。
+- 已实测：云端能装 tensorflow-cpu 2.21.0 和 pybamm 26.8.0.0，都能跑；没有显卡；OneDrive 被云端网络规则拦截（返回 403）；没装 git lfs。
+- 已新建 env/ 文件夹：README.md（环境说明）、cloud_cpu_requirements.txt（包版本清单）、cloud_cpu_env.json（环境快照）、record_env.py（每次训练记录环境的小脚本）。
+- 待用户决定：数据怎么传到云端（几个 GB）。
